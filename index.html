@@ -813,7 +813,6 @@ footer .sig{font-family:"Pixelify Sans",sans-serif;font-size:18px;color:var(--te
             var next = { slug:p.slug, url:"https://modrinth.com/mod/" + p.slug, downloads:p.downloads };
             if (!m.modrinth || m.modrinth.downloads !== next.downloads){
               m.modrinth = next;
-              if (m.tags.indexOf("On Modrinth") === -1) m.tags.push("On Modrinth");
               changed = true;
             }
           });

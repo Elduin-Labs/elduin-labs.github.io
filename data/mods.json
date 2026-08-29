@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-29T18:23:42Z",
+ "generated": "2026-08-29T18:26:27Z",
  "org": "Elduin-Labs",
  "modrinth_user": "ItsElduin",
  "count": 40,
@@ -25,8 +25,7 @@
    ],
    "tags": [
     "Survival",
-    "Injury",
-    "Download"
+    "Injury"
    ],
    "github": "https://github.com/Elduin-Labs/organs-mod",
    "stars": 0,
@@ -63,8 +62,7 @@
    ],
    "tags": [
     "Dispenser",
-    "Teleport",
-    "Download"
+    "Teleport"
    ],
    "github": "https://github.com/Elduin-Labs/pearlcannon-mod",
    "stars": 0,
@@ -101,8 +99,7 @@
    ],
    "tags": [
     "Terminal",
-    "Redstone",
-    "Download"
+    "Redstone"
    ],
    "github": "https://github.com/Elduin-Labs/ringbongos-mod",
    "stars": 0,

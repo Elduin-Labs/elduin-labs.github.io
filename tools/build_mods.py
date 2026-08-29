@@ -187,13 +187,11 @@ def main():
         man_desc = man.get("desc") or ""
         desc = ov.get("desc") or blurb(man_desc if len(man_desc) > len(gh_desc) else gh_desc or man_desc)
 
+        # the buttons on the card already say where to get it, so tags only
+        # carry things the buttons don't
         tags = list(ov.get("tags", []))
         if man.get("env") == "client":
             tags.append("Client only")
-        if mr:
-            tags.append("On Modrinth")
-        elif jar:
-            tags.append("Download")
 
         mods.append({
             "repo": repo["name"],
