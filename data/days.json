@@ -1,0 +1,271 @@
+{
+ "generated": "2026-08-29T18:16:07Z",
+ "first": "2026-07-23",
+ "last": "2026-08-28",
+ "days": {
+  "2026-07-23": {
+   "v": 2,
+   "n": 29,
+   "mods": [
+    "talking-villagers-mod"
+   ]
+  },
+  "2026-07-27": {
+   "v": 2,
+   "n": 16,
+   "mods": [
+    "kickmod",
+    "spacelaunch-mod",
+    "spinning-cow"
+   ]
+  },
+  "2026-07-28": {
+   "v": 3,
+   "n": 59,
+   "mods": [
+    "bingbong-mod",
+    "juuk-mod",
+    "nunchuckets-mod",
+    "organs-mod",
+    "realworld-mod",
+    "ridepig-mod",
+    "spacelaunch-mod"
+   ]
+  },
+  "2026-07-29": {
+   "v": 2,
+   "n": 34,
+   "mods": [
+    "bingbong-mod",
+    "juuk-mod",
+    "ridepig-mod",
+    "ringbongos-mod"
+   ]
+  },
+  "2026-07-30": {
+   "v": 2,
+   "n": 17,
+   "mods": [
+    "npc-mod",
+    "pacman-mod"
+   ]
+  },
+  "2026-07-31": {
+   "v": 1,
+   "n": 3,
+   "mods": [
+    "oldswing-mod"
+   ]
+  },
+  "2026-08-02": {
+   "v": 2,
+   "n": 23,
+   "mods": [
+    "edubots"
+   ]
+  },
+  "2026-08-03": {
+   "v": 2,
+   "n": 24,
+   "mods": [
+    "edubots"
+   ]
+  },
+  "2026-08-04": {
+   "v": 2,
+   "n": 16,
+   "mods": [
+    "edubots",
+    "glasshead",
+    "herobrine",
+    "notdying-mod",
+    "ringbongos-mod"
+   ]
+  },
+  "2026-08-05": {
+   "v": 3,
+   "n": 154,
+   "mods": [
+    "couch-mod",
+    "herobrine",
+    "pearlcannon-mod",
+    "turtlecraft-mod"
+   ]
+  },
+  "2026-08-08": {
+   "v": 3,
+   "n": 55,
+   "mods": [
+    "babies-mod",
+    "headpop-mod",
+    "lavachicken"
+   ]
+  },
+  "2026-08-09": {
+   "v": 2,
+   "n": 30,
+   "mods": [
+    "timemachine-mod"
+   ]
+  },
+  "2026-08-10": {
+   "v": 1,
+   "n": 7,
+   "mods": [
+    "kickmod"
+   ]
+  },
+  "2026-08-11": {
+   "v": 1,
+   "n": 5,
+   "mods": [
+    "timemachine-mod"
+   ]
+  },
+  "2026-08-12": {
+   "v": 3,
+   "n": 53,
+   "mods": [
+    "edubots",
+    "glasshead"
+   ]
+  },
+  "2026-08-13": {
+   "v": 3,
+   "n": 45,
+   "mods": [
+    "potty-mod"
+   ]
+  },
+  "2026-08-14": {
+   "v": 2,
+   "n": 26,
+   "mods": [
+    "claude-mod",
+    "iston-mod"
+   ]
+  },
+  "2026-08-15": {
+   "v": 2,
+   "n": 22,
+   "mods": [
+    "spongebob-mod"
+   ]
+  },
+  "2026-08-17": {
+   "v": 1,
+   "n": 9,
+   "mods": [
+    "potty-mod",
+    "ridepig-mod"
+   ]
+  },
+  "2026-08-18": {
+   "v": 1,
+   "n": 2,
+   "mods": [
+    "juuk-mod"
+   ]
+  },
+  "2026-08-21": {
+   "v": 2,
+   "n": 21,
+   "mods": [
+    "advbreakblock-mod",
+    "ringbongos-mod"
+   ]
+  },
+  "2026-08-22": {
+   "v": 3,
+   "n": 63,
+   "mods": [
+    "mcdonalds-mod",
+    "ridepig-mod",
+    "ringbongos-mod",
+    "voiceclaude-mod"
+   ]
+  },
+  "2026-08-23": {
+   "v": 3,
+   "n": 60,
+   "mods": [
+    "ringbongos-mod"
+   ]
+  },
+  "2026-08-24": {
+   "v": 2,
+   "n": 20,
+   "mods": [
+    "battleroyale",
+    "glasshead"
+   ]
+  },
+  "2026-08-25": {
+   "v": 2,
+   "n": 14,
+   "mods": [
+    "advbreakblock-mod",
+    "battleroyale",
+    "villagernose-mod"
+   ]
+  },
+  "2026-08-26": {
+   "v": 2,
+   "n": 13,
+   "mods": [
+    "mobvoice-mod"
+   ]
+  },
+  "2026-08-27": {
+   "v": 2,
+   "n": 37,
+   "mods": [
+    "circle-mod",
+    "sniffercostume-mod",
+    "twod-mod"
+   ]
+  },
+  "2026-08-28": {
+   "v": 3,
+   "n": 71,
+   "mods": [
+    "advbreakblock-mod",
+    "babies-mod",
+    "battleroyale",
+    "bingbong-mod",
+    "circle-mod",
+    "claude-mod",
+    "couch-mod",
+    "edubots",
+    "glasshead",
+    "headpop-mod",
+    "herobrine",
+    "iston-mod",
+    "juuk-mod",
+    "kickmod",
+    "lavachicken",
+    "mcdonalds-mod",
+    "mobvoice-mod",
+    "notdying-mod",
+    "npc-mod",
+    "nunchuckets-mod",
+    "oldswing-mod",
+    "organs-mod",
+    "pacman-mod",
+    "pearlcannon-mod",
+    "potty-mod",
+    "rateupdate-mod",
+    "realworld-mod",
+    "ridepig-mod",
+    "ringbongos-mod",
+    "spacelaunch-mod",
+    "spinning-cow",
+    "spongebob-mod",
+    "talking-villagers-mod",
+    "timemachine-mod",
+    "turtlecraft-mod",
+    "voiceclaude-mod"
+   ]
+  }
+ }
+}

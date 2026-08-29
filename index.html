@@ -1,0 +1,1323 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elduin's Mod Lab</title>
+<meta name="description" content="Minecraft mods built by Elduin — 40 of them, all open source, all built with Claude. And the wall of days he built them on.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#14171a" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#dcd8cd" media="(prefers-color-scheme: light)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Elduin's Mod Lab">
+<meta property="og:description" content="Minecraft mods built by Elduin — 40 of them, all open source, all built with Claude.">
+<meta property="og:url" content="https://elduin-labs.github.io/">
+<link rel="canonical" href="https://elduin-labs.github.io/">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%235cbf63'/%3E%3Crect x='3' y='3' width='10' height='10' fill='%2376dc7b'/%3E%3Crect x='3' y='5' width='3' height='4' fill='%23173a1e'/%3E%3Crect x='10' y='5' width='3' height='4' fill='%23173a1e'/%3E%3Crect x='6' y='11' width='4' height='2' fill='%23173a1e'/%3E%3Crect x='5' y='10' width='1' height='2' fill='%23173a1e'/%3E%3Crect x='10' y='10' width='1' height='2' fill='%23173a1e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap">
+
+<style>
+/* ---------- tokens: light is the bare :root ---------- */
+:root{
+  --bg:#dcd8cd;
+  --surface:#eae7dd;
+  --surface-2:#d3cfc3;
+  --slot:#bab5a6;
+  --line:#a8a293;
+  --bevel-hi:#f6f4ee;
+  --bevel-lo:#a29c8c;
+  --text:#22261f;
+  --text-dim:#5f645a;
+  --accent:#2f8f4e;
+  --accent-soft:#4caf62;
+  --diamond:#1f9aa0;
+  --amber:#b7761c;
+  --redstone:#b23a30;
+  --empty:#c4bfb1;
+  --l1:#6fbf6a;
+  --l2:#3d9c50;
+  --l3:#2ec4c4;
+  --shadow:rgba(40,44,36,.22);
+  --h1shadow:rgba(52,58,44,.20);
+  --scrim-a:rgba(220,216,205,.94);
+  --scrim-b:rgba(220,216,205,.72);
+  --scrim-c:rgba(220,216,205,.55);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14171a;
+    --surface:#1e2328;
+    --surface-2:#191d21;
+    --slot:#2b3036;
+    --line:#0d0f11;
+    --bevel-hi:#333a41;
+    --bevel-lo:#0b0d0f;
+    --text:#e7e4da;
+    --text-dim:#97a094;
+    --accent:#57d07a;
+    --accent-soft:#3fae63;
+    --diamond:#4fd6d0;
+    --amber:#f0a33c;
+    --redstone:#d4574c;
+    --empty:#262b30;
+    --l1:#2f6b3c;
+    --l2:#49b45f;
+    --l3:#5ce4dc;
+    --shadow:rgba(0,0,0,.5);
+    --h1shadow:rgba(0,0,0,.55);
+    --scrim-a:rgba(20,23,26,.92);
+    --scrim-b:rgba(20,23,26,.66);
+    --scrim-c:rgba(20,23,26,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14171a;
+  --surface:#1e2328;
+  --surface-2:#191d21;
+  --slot:#2b3036;
+  --line:#0d0f11;
+  --bevel-hi:#333a41;
+  --bevel-lo:#0b0d0f;
+  --text:#e7e4da;
+  --text-dim:#97a094;
+  --accent:#57d07a;
+  --accent-soft:#3fae63;
+  --diamond:#4fd6d0;
+  --amber:#f0a33c;
+  --redstone:#d4574c;
+  --empty:#262b30;
+  --l1:#2f6b3c;
+  --l2:#49b45f;
+  --l3:#5ce4dc;
+  --shadow:rgba(0,0,0,.5);
+  --h1shadow:rgba(0,0,0,.55);
+  --scrim-a:rgba(20,23,26,.92);
+  --scrim-b:rgba(20,23,26,.66);
+  --scrim-c:rgba(20,23,26,.5);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{max-width:100%}
+
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+/* ---------- block slabs ---------- */
+.slab{
+  background:var(--surface);
+  border:2px solid var(--line);
+  box-shadow:inset 2px 2px 0 var(--bevel-hi), inset -2px -2px 0 var(--bevel-lo), 0 3px 0 var(--shadow);
+}
+
+.eyebrow{
+  font-family:"JetBrains Mono",ui-monospace,monospace;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--text-dim);
+}
+
+h1,h2,h3{font-family:"Pixelify Sans","Archivo",sans-serif;font-weight:700;text-wrap:balance;margin:0;line-height:1.05}
+
+/* ---------- hero ---------- */
+.hero{padding:56px 0 104px;position:relative;overflow:hidden;isolation:isolate}
+.hero.live{padding-bottom:96px;min-height:min(74vh,660px);display:flex;flex-direction:column;justify-content:flex-end}
+#terrain{position:absolute;inset:auto 0 0 0;width:100%;height:88px;display:block;pointer-events:none}
+.hero.live #terrain{display:none}
+
+#world{
+  display:none;position:absolute;inset:0;width:100%;height:100%;
+  z-index:0;pointer-events:none;
+}
+.hero.live #world{display:block}
+.hero .wrap{position:relative;z-index:2}
+
+.herotop{display:grid;grid-template-columns:minmax(0,1fr);gap:26px}
+@media (min-width:900px){
+  .herotop{grid-template-columns:minmax(0,1fr) 320px;align-items:start;gap:40px}
+  .toast{margin-top:64px}
+}
+.toast{
+  background:var(--surface-2);border:2px solid var(--line);
+  box-shadow:inset 2px 2px 0 var(--bevel-hi), inset -2px -2px 0 var(--bevel-lo), 0 3px 0 var(--shadow);
+  padding:14px;display:flex;gap:13px;align-items:center;
+}
+.toast .icon{width:44px;height:44px}
+.toast .icon svg{width:32px;height:32px}
+.toast .t1{font-family:"Pixelify Sans",sans-serif;font-size:15px;color:var(--amber);line-height:1.2}
+.toast .t2{font-family:"Pixelify Sans",sans-serif;font-size:19px;color:var(--text);line-height:1.25;margin-top:3px}
+.brandmark{display:flex;align-items:center;gap:14px;margin-bottom:26px}
+.brandmark .cube{width:34px;height:34px;flex:none}
+.brandmark span{font-family:"Pixelify Sans",sans-serif;font-size:19px;letter-spacing:.02em}
+h1{font-size:clamp(32px,5.6vw,58px);letter-spacing:.02em;text-transform:uppercase;text-shadow:4px 4px 0 var(--h1shadow)}
+h1 .lime{color:var(--accent)}
+.lede{
+  max-width:34ch;margin:22px 0 0;font-size:clamp(17px,2.1vw,21px);
+  color:var(--text-dim);line-height:1.5;
+}
+.lede strong{color:var(--text);font-weight:600}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:38px}
+.stat{padding:16px 18px}
+.stat .n{display:block;color:var(--accent);line-height:0}
+.stat .n svg{height:35px;width:auto;display:block;shape-rendering:crispEdges;fill:currentColor}
+.stat .k{margin-top:8px;display:block}
+
+/* ---------- sections ---------- */
+section{padding:52px 0}
+.sec-head{margin-bottom:22px}
+.sec-head h2{font-size:clamp(26px,4vw,38px);margin-top:8px}
+.sec-head p{margin:10px 0 0;color:var(--text-dim);max-width:62ch}
+
+/* ---------- heatmap ---------- */
+.mapbox{padding:22px}
+.mapscroll{overflow-x:auto;padding-bottom:6px}
+.mapbox{--cell:12px}
+.months{
+  display:grid;grid-auto-flow:column;grid-auto-columns:var(--cell,12px);gap:3px;
+  justify-content:center;
+  font-family:"JetBrains Mono",monospace;font-size:10px;color:var(--text-dim);
+  margin-bottom:6px;height:14px;
+}
+.months span{overflow:visible;white-space:nowrap}
+.grid{
+  display:grid;grid-auto-flow:column;grid-auto-columns:var(--cell,12px);
+  grid-template-rows:repeat(7,var(--cell,12px));gap:3px;justify-content:center;
+}
+.cell{
+  width:var(--cell,12px);height:var(--cell,12px);padding:0;border:0;cursor:pointer;
+  background:var(--empty);
+  box-shadow:inset 1px 1px 0 rgba(255,255,255,.14), inset -1px -1px 0 rgba(0,0,0,.28);
+}
+.cell[data-v="1"]{background:var(--l1)}
+.cell[data-v="2"]{background:var(--l2)}
+.cell[data-v="3"]{background:var(--l3)}
+.cell.future{visibility:hidden;cursor:default}
+.cell:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+.maplegend{
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+  margin-top:18px;padding-top:16px;border-top:2px solid var(--line);
+}
+.keys{display:flex;align-items:center;gap:7px}
+.keys .cell{cursor:default;--cell:12px}
+.hint{font-size:13px;color:var(--text-dim)}
+
+/* ---------- tooltip ---------- */
+#tip{
+  position:fixed;z-index:50;pointer-events:none;display:none;
+  background:#100a1c;border:2px solid #3b2a63;
+  padding:7px 10px;font-family:"JetBrains Mono",monospace;font-size:12px;
+  color:#eae4ff;line-height:1.45;white-space:nowrap;
+}
+#tip b{display:block;color:#8ef0a5;font-weight:700}
+#tip i{font-style:normal;color:#9a8fc4}
+
+/* ---------- mods ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{
+  font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;padding:8px 13px;cursor:pointer;
+  background:var(--surface-2);color:var(--text-dim);border:2px solid var(--line);
+  box-shadow:inset 2px 2px 0 var(--bevel-hi), inset -2px -2px 0 var(--bevel-lo);
+}
+.chip[aria-pressed="true"]{background:var(--accent);color:#08120b;border-color:var(--line)}
+.chip:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+.mods{display:grid;grid-template-columns:repeat(auto-fill,minmax(288px,1fr));gap:14px}
+.mod{padding:18px;display:flex;flex-direction:column;gap:12px}
+.mod-top{display:flex;gap:14px;align-items:flex-start}
+.icon{
+  width:56px;height:56px;flex:none;background:var(--slot);
+  box-shadow:inset 2px 2px 0 var(--bevel-lo), inset -2px -2px 0 var(--bevel-hi);
+  display:grid;place-items:center;
+}
+.icon{position:relative}
+.icon svg{width:40px;height:40px;shape-rendering:crispEdges}
+canvas.item{
+  display:none;position:absolute;inset:0;width:100%;height:100%;
+  cursor:grab;touch-action:none;
+}
+canvas.item:active{cursor:grabbing}
+canvas.item.live{display:block}
+canvas.item.live + svg, .icon:has(canvas.item.live) svg{visibility:hidden}
+.mod h3{font-size:22px}
+.rarity{
+  font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;margin-top:6px;color:var(--diamond);
+}
+.mod p{margin:0;font-size:15px;color:var(--text-dim)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.tag{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--text-dim);
+  border:2px solid var(--line);padding:3px 7px;background:var(--surface-2);
+}
+.links{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding-top:12px}
+.links a{
+  font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  padding:7px 11px;color:var(--text-dim);background:var(--surface-2);
+  border:2px solid var(--line);
+  box-shadow:inset 2px 2px 0 var(--bevel-hi), inset -2px -2px 0 var(--bevel-lo);
+}
+.links a:hover{color:var(--text)}
+.links a.go{background:var(--accent);color:#08120b}
+.links a:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.links .dl{
+  font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.06em;
+  color:var(--text-dim);margin-left:auto;
+}
+.mod code{
+  font-family:"JetBrains Mono",monospace;font-size:13px;
+  background:var(--surface-2);border:2px solid var(--line);padding:0 4px;
+}
+.cell.before{background:var(--empty);opacity:.45;cursor:default}
+.herolinks{padding-top:22px}
+.footlinks{padding-top:14px;padding-bottom:10px}
+footer .fine{font-size:13px;opacity:.75}
+
+/* ---------- how ---------- */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.step{padding:20px}
+.step .num{
+  font-family:"Pixelify Sans",sans-serif;font-size:15px;color:var(--amber);
+  display:block;margin-bottom:10px;
+}
+.step h3{font-size:20px;margin-bottom:8px}
+.step p{margin:0;color:var(--text-dim);font-size:15px}
+
+/* ---------- footer ---------- */
+footer{padding:40px 0 64px;border-top:2px solid var(--line);margin-top:20px}
+footer p{margin:0;color:var(--text-dim);font-size:14px}
+footer .sig{font-family:"Pixelify Sans",sans-serif;font-size:18px;color:var(--text)}
+
+@media (prefers-reduced-motion:no-preference){
+  .mod{transition:transform .12s ease}
+  .mod:hover{transform:translateY(-2px)}
+  .cell{transition:background .1s linear}
+}
+@media (max-width:560px){
+  .hero{padding-top:36px}
+  .mapbox{padding:16px}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <canvas id="world" aria-label="Elduin's year of coding, as a world you can look around"></canvas>
+  <canvas id="terrain" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="brandmark">
+      <svg class="cube" viewBox="0 0 16 16" shape-rendering="crispEdges" role="img" aria-label="Happy slime">
+        <rect x="0" y="0" width="16" height="16" fill="#5cbf63"></rect>
+        <rect x="3" y="3" width="10" height="10" fill="#76dc7b"></rect>
+        <rect x="4" y="4" width="3" height="2" fill="#8ae88e"></rect>
+        <rect x="10" y="10" width="3" height="2" fill="#63cc6a"></rect>
+        <rect x="0" y="0" width="16" height="1" fill="#8ae88e"></rect>
+        <rect x="0" y="0" width="1" height="16" fill="#8ae88e"></rect>
+        <rect x="15" y="0" width="1" height="16" fill="#3f8f48"></rect>
+        <rect x="0" y="15" width="16" height="1" fill="#3f8f48"></rect>
+        <rect x="3" y="5" width="3" height="4" fill="#173a1e"></rect>
+        <rect x="10" y="5" width="3" height="4" fill="#173a1e"></rect>
+        <rect x="4" y="5" width="1" height="1" fill="#d8f3da"></rect>
+        <rect x="11" y="5" width="1" height="1" fill="#d8f3da"></rect>
+        <rect x="6" y="11" width="4" height="2" fill="#173a1e"></rect>
+        <rect x="5" y="10" width="1" height="2" fill="#173a1e"></rect>
+        <rect x="10" y="10" width="1" height="2" fill="#173a1e"></rect>
+      </svg>
+      <span>Elduin's Mod Lab</span>
+    </div>
+    <div class="herotop">
+      <div>
+    <p class="eyebrow">Minecraft mods · built with Claude</p>
+    <h1>I don't download mods.<br><span class="lime">I write them.</span></h1>
+    <p class="lede">I'm Elduin. I make Minecraft mods — <strong>new mobs, new blocks, new tools</strong> — and I've been building them almost every single day. This is everything I've made so far, and the wall of days I made it on.</p>
+    <div class="links herolinks">
+      <a class="go" href="https://github.com/Elduin-Labs" rel="noopener">All the code on GitHub</a>
+      <a href="https://modrinth.com/user/ItsElduin" rel="noopener">Modrinth profile</a>
+    </div>
+
+      </div>
+      <div class="toast">
+        <div class="icon">
+          <svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true">
+            <rect x="3" y="0" width="2" height="1" fill="#5ce4dc"></rect>
+            <rect x="2" y="1" width="4" height="1" fill="#5ce4dc"></rect>
+            <rect x="1" y="2" width="6" height="2" fill="#4fd6d0"></rect>
+            <rect x="2" y="4" width="4" height="2" fill="#3bb8b4"></rect>
+            <rect x="3" y="6" width="2" height="1" fill="#2e9b98"></rect>
+          </svg>
+        </div>
+        <div>
+          <div class="t1">Advancement made!</div>
+          <div class="t2">Every day since 4</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="slab stat"><span class="n" id="s-days"></span><span class="k eyebrow">Days coded</span></div>
+      <div class="slab stat"><span class="n" id="s-streak"></span><span class="k eyebrow">Current streak</span></div>
+      <div class="slab stat"><span class="n" id="s-best"></span><span class="k eyebrow">Longest streak</span></div>
+      <div class="slab stat"><span class="n" id="s-mods"></span><span class="k eyebrow">Mods built</span></div>
+    </div>
+  </div>
+
+</header>
+
+<main>
+  <section id="streak">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">The wall of days</p>
+        <h2>One block for every day</h2>
+        <p>Green means I wrote mod code that day. Hover a block to see what I was working on.</p>
+      </div>
+
+      <div class="slab mapbox">
+        <div class="mapscroll">
+          <div class="months" id="months" aria-hidden="true"></div>
+          <div class="grid" id="grid" role="group" aria-label="Coding activity, one block per day"></div>
+        </div>
+        <div class="maplegend">
+          <div class="keys">
+            <span class="hint">Nothing that day</span>
+            <span class="cell" data-v="0"></span>
+            <span class="cell" data-v="1"></span>
+            <span class="cell" data-v="2"></span>
+            <span class="cell" data-v="3"></span>
+            <span class="hint">Big build</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="mods">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">The workbench</p>
+        <h2>Mods I've built</h2>
+        <p>Every one of these started as an idea I had, and then Claude and I wrote the code together until it worked in the game.</p>
+      </div>
+      <div class="filters" id="filters"></div>
+      <div class="mods" id="modgrid"></div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">How a mod gets made</p>
+        <h2>Idea, code, test, repeat</h2>
+      </div>
+      <div class="steps">
+        <div class="slab step">
+          <span class="num">STEP 1</span>
+          <h3>I think of the thing</h3>
+          <p>Usually while I'm already playing. "What if slimes glowed?" That's the whole start of it.</p>
+        </div>
+        <div class="slab step">
+          <span class="num">STEP 2</span>
+          <h3>We write the code</h3>
+          <p>I tell Claude what it should do and we build it piece by piece. I decide how it works. Claude helps me say it in Java.</p>
+        </div>
+        <div class="slab step">
+          <span class="num">STEP 3</span>
+          <h3>I load it and play</h3>
+          <p>Into the game it goes. Something is always wrong the first time, so we fix it and try again.</p>
+        </div>
+        <div class="slab step">
+          <span class="num">STEP 4</span>
+          <h3>Another green block</h3>
+          <p>When it works, the day turns green on the wall. Then I start thinking about tomorrow's mod.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="sig">Elduin's Mod Lab</p>
+    <p>Built with Claude. Play tested in survival mode.</p>
+    <div class="links footlinks">
+      <a href="https://github.com/Elduin-Labs" rel="noopener">GitHub</a>
+      <a href="https://modrinth.com/user/ItsElduin" rel="noopener">Modrinth</a>
+      <a href="https://github.com/Elduin-Labs/elduin-labs.github.io" rel="noopener">This site</a>
+    </div>
+    <p class="fine">The mod list and the wall of days are generated from the repos themselves — nothing here is typed in by hand.</p>
+  </div>
+</footer>
+
+<div id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* =====================================================================
+     THE DATA
+     Nothing on this page is made up. Both files are generated:
+       data/mods.json  — tools/build_mods.py, from the Elduin-Labs repos,
+                         each mod's own fabric.mod.json, its GitHub releases
+                         and its Modrinth page. A workflow rebuilds it daily.
+       data/days.json  — tools/build_days.py, from the days the mod source
+                         files were actually written.
+     MODS stays a plain array because the WebGPU icon code below reads it.
+     ===================================================================== */
+  var MODS = [];
+  var DAYS = null;
+
+  var PAL = { g:"#57d07a", n:"#2f7a45", k:"#1a1d21", w:"#f2f4f6", l:"#c9cdd2",
+              s:"#8f9aa3", u:"#575e66", y:"#f0c33c", o:"#f0873c", r:"#d4574c",
+              m:"#8c2f2a", c:"#5ce4dc", b:"#4a7fd4", i:"#a8d8f0", p:"#a06ee0",
+              v:"#5b3a8c", d:"#8a5a34", t:"#c9a06a", e:"#e8b48c", f:"#c97f5a",
+              h:"#e05a8c" };
+
+  /* ---------- pixel art ---------- */
+  function art(rows){
+    var s = '<svg viewBox="0 0 8 8" shape-rendering="crispEdges" aria-hidden="true">';
+    for (var y=0; y<rows.length; y++){
+      for (var x=0; x<rows[y].length; x++){
+        var c = PAL[rows[y][x]];
+        if (c) s += '<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="'+c+'"></rect>';
+      }
+    }
+    return s + '</svg>';
+  }
+
+  /* ---------- 5x7 pixel digits, drawn by hand so every numeral is unmistakable ---------- */
+  var DIGITS = {
+    "0":["01110","10001","10011","10101","11001","10001","01110"],
+    "1":["00100","01100","00100","00100","00100","00100","01110"],
+    "2":["01110","10001","00001","00010","00100","01000","11111"],
+    "3":["11111","00010","00100","00010","00001","10001","01110"],
+    "4":["00010","00110","01010","10010","11111","00010","00010"],
+    "5":["11111","10000","11110","00001","00001","10001","01110"],
+    "6":["00110","01000","10000","11110","10001","10001","01110"],
+    "7":["11111","00001","00010","00100","01000","01000","01000"],
+    "8":["01110","10001","10001","01110","10001","10001","01110"],
+    "9":["01110","10001","10001","01111","00001","00010","01100"]
+  };
+
+  function pixelNumber(el, value){
+    if (!el) return;
+    var str = String(value);
+    var w = str.length * 6 - 1;
+    var out = '<svg viewBox="0 0 ' + w + ' 7" role="img" aria-label="' + str + '">';
+    for (var i=0; i<str.length; i++){
+      var g = DIGITS[str[i]];
+      if (!g) continue;
+      for (var y=0; y<7; y++){
+        var row = g[y], run = 0;
+        for (var x=0; x<=5; x++){
+          if (x < 5 && row[x] === "1"){ run++; continue; }
+          if (run){
+            out += '<rect x="' + (i*6 + x - run) + '" y="' + y + '" width="' + run + '" height="1"></rect>';
+            run = 0;
+          }
+        }
+      }
+    }
+    el.innerHTML = out + '</svg>';
+  }
+
+  /* ---------- mods ---------- */
+  var CATS = [["all","All mods"],["mobs","Mobs"],["blocks","Blocks"],["tools","Items"],["world","Whole game"]];
+  var filters = document.getElementById("filters");
+  var modgrid = document.getElementById("modgrid");
+  var active = "all";
+
+  function buildFilters(){
+    filters.innerHTML = "";
+    CATS.forEach(function(c){
+      var n = c[0] === "all" ? MODS.length : MODS.filter(function(m){ return m.cat === c[0]; }).length;
+      if (!n) return;
+      var b = document.createElement("button");
+      b.className = "chip";
+      b.type = "button";
+      b.textContent = c[1] + " (" + n + ")";
+      b.setAttribute("aria-pressed", c[0] === active ? "true" : "false");
+      b.addEventListener("click", function(){
+        active = c[0];
+        Array.prototype.forEach.call(filters.children, function(el){
+          el.setAttribute("aria-pressed", el === b ? "true" : "false");
+        });
+        renderMods();
+      });
+      filters.appendChild(b);
+    });
+  }
+
+  function plural(n, one, many){ return n + " " + (n === 1 ? one : many); }
+
+  function renderMods(){
+    modgrid.innerHTML = "";
+    MODS.filter(function(m){ return active === "all" || m.cat === active; }).forEach(function(m){
+      var el = document.createElement("article");
+      el.className = "slab mod";
+      el.innerHTML =
+        '<div class="mod-top">' +
+          '<div class="icon"><canvas class="item" data-mod="' + MODS.indexOf(m) + '"></canvas>' + art(m.art) + '</div>' +
+          '<div><h3></h3><div class="rarity"></div></div>' +
+        '</div>' +
+        '<p></p>' +
+        '<div class="tags"></div>' +
+        '<div class="links"></div>';
+
+      el.querySelector("h3").textContent = m.title;
+      el.querySelector(".rarity").textContent =
+        m.kind + (m.versions && m.versions.length ? " · " + m.versions.join(", ") : "");
+      el.querySelector("p").textContent = m.desc;
+
+      var t = el.querySelector(".tags");
+      (m.tags || []).forEach(function(tag){
+        var s = document.createElement("span");
+        s.className = "tag";
+        s.textContent = tag;
+        t.appendChild(s);
+      });
+
+      var links = el.querySelector(".links");
+      function link(href, text, cls){
+        var a = document.createElement("a");
+        a.href = href;
+        a.className = cls;
+        a.textContent = text;
+        a.rel = "noopener";
+        links.appendChild(a);
+      }
+      if (m.jar) link(m.jar.url, "Download", "go");
+      else if (m.modrinth) link(m.modrinth.url, "Get it", "go");
+      if (m.modrinth) link(m.modrinth.url, "Modrinth", "");
+      link(m.github, "Code", "");
+
+      if (m.modrinth && m.modrinth.downloads){
+        var d = document.createElement("span");
+        d.className = "dl";
+        d.textContent = plural(m.modrinth.downloads, "download", "downloads");
+        links.appendChild(d);
+      } else if (m.jar && m.jar.downloads){
+        var d2 = document.createElement("span");
+        d2.className = "dl";
+        d2.textContent = plural(m.jar.downloads, "download", "downloads");
+        links.appendChild(d2);
+      }
+
+      modgrid.appendChild(el);
+    });
+    window.dispatchEvent(new Event("elduin:modsrendered"));
+  }
+
+  /* ---------- the wall of days ---------- */
+  var KEY = "elduin-mod-lab-days-v2";
+  var MS = 86400000;
+  var MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  var FULLDAY = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  var LABEL = ["Nothing that day","Built something","Good build day","Big build day"];
+  var days = [];
+  var grid = document.getElementById("grid");
+  var months = document.getElementById("months");
+  var tip = document.getElementById("tip");
+
+  function iso(d){
+    return d.getFullYear() + "-" +
+      String(d.getMonth()+1).padStart(2,"0") + "-" +
+      String(d.getDate()).padStart(2,"0");
+  }
+
+  function buildWall(data){
+    var today = new Date();
+    today.setHours(12,0,0,0);
+
+    var real = (data && data.days) || {};
+    var firstKey = (data && data.first) || iso(today);
+    var firstDay = new Date(firstKey + "T12:00:00");
+
+    // start a few days before the first real day and run to today, up to a
+    // full year once there is that much history
+    var span = Math.round((today - firstDay) / MS) + 6;
+    span = Math.max(35, Math.min(371, span));
+
+    var start = new Date(today.getTime() - (span-1)*MS);
+    start.setDate(start.getDate() - start.getDay());   // back to a Sunday
+
+    var titleOf = {};
+    MODS.forEach(function(m){ titleOf[m.repo] = m.title; });
+
+    days = [];
+    for (var i=0; i<span + 7; i++){
+      var d = new Date(start.getTime() + i*MS);
+      var key = iso(d);
+      var rec = real[key];
+      days.push({
+        date: d,
+        key: key,
+        v: rec ? rec.v : 0,
+        mods: rec ? (rec.mods || []).map(function(r){ return titleOf[r] || r; }) : [],
+        future: d > today,
+        before: d < firstDay
+      });
+    }
+
+    // whatever the visitor has clicked in on their own machine wins
+    var saved = {};
+    try {
+      var rawSaved = localStorage.getItem(KEY);
+      if (rawSaved) saved = JSON.parse(rawSaved) || {};
+    } catch(e){ saved = {}; }
+    days.forEach(function(d){
+      if (!d.future && saved[d.key] !== undefined){ d.v = saved[d.key]; d.edited = true; }
+    });
+
+    // month ruler: one label per column, only where the month changes
+    months.innerHTML = "";
+    var lastMonth = -1;
+    for (var w=0; w<Math.ceil(days.length/7); w++){
+      var first = days[w*7];
+      var span2 = document.createElement("span");
+      if (first && first.date.getMonth() !== lastMonth && first.date.getDate() <= 7){
+        span2.textContent = MON[first.date.getMonth()];
+        lastMonth = first.date.getMonth();
+      }
+      months.appendChild(span2);
+    }
+
+    // blocks grow to fill the box when the history is still short
+    var weeks = Math.ceil(days.length/7);
+    var box = document.querySelector(".mapbox");
+    var room = box.clientWidth - 44;
+    var size = Math.max(12, Math.min(38, Math.floor((room - (weeks-1)*3) / weeks)));
+    box.style.setProperty("--cell", size + "px");
+
+    grid.innerHTML = "";
+    days.forEach(function(d){
+      var b = document.createElement("button");
+      b.className = "cell" + (d.future ? " future" : "") + (d.before && !d.edited ? " before" : "");
+      b.type = "button";
+      b.dataset.v = d.v;
+      if (d.future){ b.tabIndex = -1; b.setAttribute("aria-hidden","true"); grid.appendChild(b); return; }
+      b.setAttribute("aria-label", d.key + ": " + dayText(d));
+      b.addEventListener("mouseenter", function(){ showTip(b, d); });
+      b.addEventListener("focus", function(){ showTip(b, d); });
+      b.addEventListener("mouseleave", hideTip);
+      b.addEventListener("blur", hideTip);
+      b.addEventListener("click", function(){
+        d.v = (d.v + 1) % 4;
+        d.edited = true;
+        d.mods = [];
+        b.dataset.v = d.v;
+        b.classList.remove("before");
+        b.setAttribute("aria-label", d.key + ": " + dayText(d));
+        saved[d.key] = d.v;
+        try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch(e){}
+        showTip(b, d);
+        stats();
+        window.dispatchEvent(new Event("elduin:daychanged"));
+      });
+      grid.appendChild(b);
+    });
+
+    stats();
+  }
+
+  var wallResize;
+  window.addEventListener("resize", function(){
+    clearTimeout(wallResize);
+    wallResize = setTimeout(function(){ if (days.length) buildWall(DAYS); }, 150);
+  });
+
+  function dayText(d){
+    if (d.mods && d.mods.length){
+      return "Worked on " + d.mods.slice(0,3).join(", ") +
+             (d.mods.length > 3 ? " +" + (d.mods.length-3) + " more" : "");
+    }
+    if (d.before && d.v === 0) return "Before the lab opened";
+    return LABEL[d.v];
+  }
+
+  function showTip(el, d){
+    tip.innerHTML = "";
+    var b = document.createElement("b");
+    b.textContent = dayText(d);
+    var i2 = document.createElement("i");
+    i2.textContent = FULLDAY[d.date.getDay()] + ", " + MON[d.date.getMonth()] + " " +
+                     d.date.getDate() + ", " + d.date.getFullYear();
+    tip.appendChild(b); tip.appendChild(i2);
+    var r = el.getBoundingClientRect();
+    tip.style.display = "block";
+    var tw = tip.offsetWidth;
+    var left = Math.min(Math.max(8, r.left + r.width/2 - tw/2), window.innerWidth - tw - 8);
+    var top = r.top - tip.offsetHeight - 8;
+    if (top < 8) top = r.bottom + 8;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip(){ tip.style.display = "none"; }
+  window.addEventListener("scroll", hideTip, { passive:true });
+
+  function stats(){
+    var past = days.filter(function(d){ return !d.future && !(d.before && d.v === 0); });
+    var coded = past.filter(function(d){ return d.v > 0; }).length;
+
+    var cur = 0;
+    for (var i=past.length-1; i>=0; i--){
+      if (past[i].v > 0) cur++;
+      else if (i === past.length-1) continue;   // today not logged yet is fine
+      else break;
+    }
+
+    var best = 0, run = 0;
+    past.forEach(function(d){
+      if (d.v > 0){ run++; if (run > best) best = run; } else run = 0;
+    });
+
+    pixelNumber(document.getElementById("s-days"), coded);
+    pixelNumber(document.getElementById("s-streak"), cur);
+    pixelNumber(document.getElementById("s-best"), best);
+    pixelNumber(document.getElementById("s-mods"), MODS.length);
+  }
+
+  /* ---------- Modrinth, live ----------
+     data/mods.json is rebuilt daily, so between rebuilds a newly approved
+     Modrinth page would be missing. Modrinth's API is open, so ask it
+     directly and fill in anything new. If it fails, nothing changes. */
+  function refreshModrinth(user){
+    if (!user || !window.fetch) return;
+    fetch("https://api.modrinth.com/v2/user/" + user + "/projects")
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(list){
+        if (!list || !list.length) return;
+        var norm = function(s){ return String(s||"").toLowerCase().replace(/[^a-z0-9]/g,""); };
+        var changed = false;
+        list.forEach(function(p){
+          MODS.forEach(function(m){
+            var hit = norm(p.slug) === norm(m.repo.replace(/-mod$/,"")) ||
+                      norm(p.slug) === norm(m.repo) ||
+                      norm(p.title) === norm(m.title);
+            if (!hit) return;
+            var next = { slug:p.slug, url:"https://modrinth.com/mod/" + p.slug, downloads:p.downloads };
+            if (!m.modrinth || m.modrinth.downloads !== next.downloads){
+              m.modrinth = next;
+              if (m.tags.indexOf("On Modrinth") === -1) m.tags.push("On Modrinth");
+              changed = true;
+            }
+          });
+        });
+        if (changed) renderMods();
+      })
+      .catch(function(){});
+  }
+
+  /* ---------- boot ---------- */
+  function getJSON(url){
+    return fetch(url, { cache: "no-cache" }).then(function(r){
+      if (!r.ok) throw new Error(url + " " + r.status);
+      return r.json();
+    });
+  }
+
+  function offline(){
+    modgrid.innerHTML = "";
+    var el = document.createElement("article");
+    el.className = "slab mod";
+    el.innerHTML = '<h3>The mod list is in data/mods.json</h3>' +
+      '<p>A browser will not read that file straight off the disk. Run ' +
+      '<code>python3 -m http.server</code> in this folder and open ' +
+      '<code>localhost:8000</code>, or just visit the live site.</p>';
+    modgrid.appendChild(el);
+    filters.innerHTML = "";
+  }
+
+  Promise.all([
+    getJSON("data/mods.json"),
+    getJSON("data/days.json").catch(function(){ return null; })
+  ]).then(function(res){
+    var data = res[0];
+    MODS = data.mods || [];
+    DAYS = res[1];
+    buildFilters();
+    renderMods();
+    buildWall(DAYS);
+    var toast = document.querySelector(".toast .t2");
+    if (toast) toast.textContent = MODS.length + " mods and counting";
+    refreshModrinth(data.modrinth_user);
+  }).catch(function(){
+    offline();
+    buildWall(null);
+  });
+
+  /* =====================================================================
+     WEBGPU — the slime head that watches your pointer, and the item
+     viewers on the mod cards. All optional: if any of it fails the page
+     keeps the flat pixel art it already had.
+     ===================================================================== */
+  (function gpu3d(){
+    if (!("gpu" in navigator) || !navigator.gpu) return;
+
+    var world = document.getElementById("world");
+    var hero = document.querySelector(".hero");
+    var device = null, format = null;
+
+    var HEAD_WGSL = [
+      "struct U { a: vec4f, b: vec4f, c: vec4f }",
+      "@group(0) @binding(0) var<uniform> u : U;",
+      "",
+      "const GREEN : vec3f = vec3f(0.38, 0.78, 0.42);",
+      "const DARK  : vec3f = vec3f(0.07, 0.19, 0.11);",
+      "const SHINE : vec3f = vec3f(0.85, 0.96, 0.86);",
+      "",
+      "// the face, drawn on a 16x16 grid so the pupils can actually move",
+      "fn faceArt(cx: i32, cy: i32) -> vec4f {",
+      "  let lookX = u.c.x;",
+      "  let lookY = u.c.y;",
+      "  let blink = u.b.w;",
+      "  let inL = cx >= 2 && cx <= 5 && cy >= 4 && cy <= 7;",
+      "  let inR = cx >= 10 && cx <= 13 && cy >= 4 && cy <= 7;",
+      "  if (inL || inR) {",
+      "    if (blink > 0.5) {",
+      "      if (cy == 6) { return vec4f(DARK, 1.0); }",
+      "      return vec4f(0.0);",
+      "    }",
+      "    let ox = i32(round(lookX * 1.4));",
+      "    let oy = i32(round(lookY * 1.4));",
+      "    var bx = 11 + ox;",
+      "    if (inL) { bx = 3 + ox; }",
+      "    let by = 5 + oy;",
+      "    if (cx >= bx && cx <= bx + 1 && cy >= by && cy <= by + 1) { return vec4f(SHINE, 1.0); }",
+      "    return vec4f(DARK, 1.0);",
+      "  }",
+      "  if (cy == 11 && cx >= 5 && cx <= 10) { return vec4f(DARK, 1.0); }",
+      "  if (cy == 10 && (cx == 4 || cx == 11)) { return vec4f(DARK, 1.0); }",
+      "  return vec4f(0.0);",
+      "}",
+      "",
+      "@vertex",
+      "fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {",
+      "  var p = array<vec2f, 3>(vec2f(-1.0, -1.0), vec2f(3.0, -1.0), vec2f(-1.0, 3.0));",
+      "  return vec4f(p[i], 0.0, 1.0);",
+      "}",
+      "",
+      "@fragment",
+      "fn fs(@builtin(position) frag: vec4f) -> @location(0) vec4f {",
+      "  let aspect = u.a.x / u.a.y;",
+      "  let ux = ((frag.x / u.a.x) * 2.0 - 1.0) * aspect - u.a.z;",
+      "  let uy = -((frag.y / u.a.y) * 2.0 - 1.0);",
+      "",
+      "  var ro = vec3f(0.0, 0.0, 4.2);",
+      "  var rd = normalize(vec3f(ux * u.a.w, uy * u.a.w, -1.0));",
+      "",
+      "  // inverse-rotate the ray into the head's space",
+      "  let cyw = cos(u.b.x); let syw = sin(u.b.x);",
+      "  let cpt = cos(u.b.y); let spt = sin(u.b.y);",
+      "  var o = vec3f(ro.x * cyw + ro.z * syw, ro.y, -ro.x * syw + ro.z * cyw);",
+      "  var d = vec3f(rd.x * cyw + rd.z * syw, rd.y, -rd.x * syw + rd.z * cyw);",
+      "  o = vec3f(o.x, o.y * cpt - o.z * spt, o.y * spt + o.z * cpt);",
+      "  d = vec3f(d.x, d.y * cpt - d.z * spt, d.y * spt + d.z * cpt);",
+      "",
+      "  // squash and stretch, applied to the ray rather than the box",
+      "  let sqY = 1.0 - u.b.z * 0.22;",
+      "  let sqX = 1.0 + u.b.z * 0.12;",
+      "  o = vec3f(o.x / sqX, o.y / sqY, o.z / sqX);",
+      "  d = vec3f(d.x / sqX, d.y / sqY, d.z / sqX);",
+      "",
+      "  var tmin = -1e30; var tmax = 1e30; var axis = 0;",
+      "  if (abs(d.x) > 1e-6) {",
+      "    let t1 = (-1.0 - o.x) / d.x; let t2 = (1.0 - o.x) / d.x;",
+      "    let lo = min(t1, t2); let hi = max(t1, t2);",
+      "    if (lo > tmin) { tmin = lo; axis = 0; }",
+      "    tmax = min(tmax, hi);",
+      "  } else if (o.x < -1.0 || o.x > 1.0) { tmax = -1.0; }",
+      "  if (abs(d.y) > 1e-6) {",
+      "    let t1 = (-1.0 - o.y) / d.y; let t2 = (1.0 - o.y) / d.y;",
+      "    let lo = min(t1, t2); let hi = max(t1, t2);",
+      "    if (lo > tmin) { tmin = lo; axis = 1; }",
+      "    tmax = min(tmax, hi);",
+      "  } else if (o.y < -1.0 || o.y > 1.0) { tmax = -1.0; }",
+      "  if (abs(d.z) > 1e-6) {",
+      "    let t1 = (-1.0 - o.z) / d.z; let t2 = (1.0 - o.z) / d.z;",
+      "    let lo = min(t1, t2); let hi = max(t1, t2);",
+      "    if (lo > tmin) { tmin = lo; axis = 2; }",
+      "    tmax = min(tmax, hi);",
+      "  } else if (o.z < -1.0 || o.z > 1.0) { tmax = -1.0; }",
+      "",
+      "  if (tmax < max(tmin, 0.0)) { return vec4f(0.0); }",
+      "",
+      "  let t = max(tmin, 0.0);",
+      "  let p = o + d * t;",
+      "",
+      "  var shade = 0.72;",
+      "  var front = false;",
+      "  var gu = 0.0; var gv = 0.0;",
+      "  if (axis == 0) {",
+      "    shade = 0.72;",
+      "    gu = (p.z + 1.0) * 0.5; gv = (1.0 - p.y) * 0.5;",
+      "  } else if (axis == 1) {",
+      "    if (d.y < 0.0) { shade = 1.06; } else { shade = 0.50; }",
+      "    gu = (p.x + 1.0) * 0.5; gv = (p.z + 1.0) * 0.5;",
+      "  } else {",
+      "    if (d.z < 0.0) { shade = 0.94; front = true; } else { shade = 0.66; }",
+      "    gu = (p.x + 1.0) * 0.5; gv = (1.0 - p.y) * 0.5;",
+      "  }",
+      "",
+      "  let cx = clamp(i32(floor(gu * 16.0)), 0, 15);",
+      "  let cy = clamp(i32(floor(gv * 16.0)), 0, 15);",
+      "",
+      "  var c = GREEN;",
+      "  var art = vec4f(0.0);",
+      "  if (front) { art = faceArt(cx, cy); }",
+      "  if (art.a > 0.5) {",
+      "    c = art.rgb;",
+      "  } else {",
+      "    let n = f32((cx * 7 + cy * 13) % 5) / 5.0;",
+      "    c = GREEN * (0.94 + n * 0.12);",
+      "  }",
+      "  c = c * shade;",
+      "",
+      "  let fu = gu * 16.0 - f32(cx);",
+      "  let fv = gv * 16.0 - f32(cy);",
+      "  let e = min(min(fu, 1.0 - fu), min(fv, 1.0 - fv));",
+      "  if (e < 0.06) { c = c * 0.88; }",
+      "",
+      "  return vec4f(c, 1.0);",
+      "}"
+    ].join("\n");
+
+    var ITEM_WGSL = [
+      "struct IU { res: vec4f, rot: vec4f }",
+      "@group(0) @binding(0) var<uniform> iu : IU;",
+      "@group(0) @binding(1) var<storage, read> ART : array<vec4f>;",
+      "",
+      "@vertex",
+      "fn vs(@builtin(vertex_index) i: u32) -> @builtin(position) vec4f {",
+      "  var p = array<vec2f, 3>(vec2f(-1.0, -1.0), vec2f(3.0, -1.0), vec2f(-1.0, 3.0));",
+      "  return vec4f(p[i], 0.0, 1.0);",
+      "}",
+      "",
+      "@fragment",
+      "fn fs(@builtin(position) frag: vec4f) -> @location(0) vec4f {",
+      "  let uv = (frag.xy / iu.res.xy) * 2.0 - 1.0;",
+      "  let a = iu.rot.x;",
+      "  let ca = cos(a); let sa = sin(a);",
+      "  let TH = 0.17;",
+      "",
+      "  var ro = vec3f(0.0, 0.0, 3.2);",
+      "  var rd = normalize(vec3f(uv.x * 0.40, -uv.y * 0.40, -1.0));",
+      "  ro = vec3f(ro.x * ca + ro.z * sa, ro.y, -ro.x * sa + ro.z * ca);",
+      "  rd = vec3f(rd.x * ca + rd.z * sa, rd.y, -rd.x * sa + rd.z * ca);",
+      "",
+      "  if (abs(rd.z) < 1e-5) { return vec4f(0.0); }",
+      "  let tA = (TH - ro.z) / rd.z;",
+      "  let tB = (-TH - ro.z) / rd.z;",
+      "  let tEnter = min(tA, tB);",
+      "  let tExit = max(tA, tB);",
+      "  if (tExit <= 0.0) { return vec4f(0.0); }",
+      "",
+      "  for (var k = 0; k <= 10; k = k + 1) {",
+      "    let tt = tEnter + (tExit - tEnter) * (f32(k) / 10.0);",
+      "    if (tt < 0.0) { continue; }",
+      "    let p = ro + rd * tt;",
+      "    if (abs(p.x) > 1.0 || abs(p.y) > 1.0) { continue; }",
+      "    let cx = i32(floor((p.x + 1.0) * 4.0));",
+      "    let cy = i32(floor((1.0 - p.y) * 4.0));",
+      "    if (cx < 0 || cx > 7 || cy < 0 || cy > 7) { continue; }",
+      "    let c = ART[cy * 8 + cx];",
+      "    if (c.a < 0.5) { continue; }",
+      "    var shade = 0.72;",
+      "    if (p.z > 0.0) { shade = 1.0; }",
+      "    let fx = (p.x + 1.0) * 4.0 - f32(cx);",
+      "    let fy = (1.0 - p.y) * 4.0 - f32(cy);",
+      "    let e = min(min(fx, 1.0 - fx), min(fy, 1.0 - fy));",
+      "    if (e < 0.07) { shade = shade * 0.85; }",
+      "    return vec4f(c.rgb * shade, 1.0);",
+      "  }",
+      "  return vec4f(0.0);",
+      "}"
+    ].join("\n");
+
+    (async function boot(){
+      var adapter, dev;
+      try {
+        adapter = await navigator.gpu.requestAdapter();
+        if (!adapter) return;
+        dev = await adapter.requestDevice();
+      } catch (e) { return; }
+      device = dev;
+      format = navigator.gpu.getPreferredCanvasFormat();
+      try { startHead(); } catch (e) { return; }
+      try { startItems(); } catch (e) {}
+    })();
+
+    /* ---------------- the head ---------------- */
+    function startHead(){
+      var ctx = world.getContext("webgpu");
+      if (!ctx) throw new Error("no context");
+      ctx.configure({ device: device, format: format, alphaMode: "premultiplied" });
+
+      var mod = device.createShaderModule({ code: HEAD_WGSL });
+      var pipe = device.createRenderPipeline({
+        layout: "auto",
+        vertex: { module: mod, entryPoint: "vs" },
+        fragment: {
+          module: mod, entryPoint: "fs",
+          targets: [{
+            format: format,
+            blend: {
+              color: { srcFactor: "src-alpha", dstFactor: "one-minus-src-alpha" },
+              alpha: { srcFactor: "one", dstFactor: "one-minus-src-alpha" }
+            }
+          }]
+        },
+        primitive: { topology: "triangle-list" }
+      });
+
+      var ubuf = device.createBuffer({ size: 48, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
+      var bind = device.createBindGroup({
+        layout: pipe.getBindGroupLayout(0),
+        entries: [{ binding: 0, resource: { buffer: ubuf } }]
+      });
+      var u = new Float32Array(12);
+
+      var lookX = 0, lookY = 0, tgtX = 0, tgtY = 0;
+      var idle = 99, squashAt = -10, blinkAt = 3 + Math.random() * 3;
+      var running = false, last = performance.now(), clock = 0;
+
+      /* the pointer is tracked on the whole hero, and the canvas itself is
+         click-through, so nothing here can swallow a scroll or a tap */
+      hero.addEventListener("pointermove", function(e){
+        var r = hero.getBoundingClientRect();
+        if (!r.width || !r.height) return;
+        tgtX = Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width) * 2 - 1));
+        tgtY = Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height) * 2 - 1));
+        idle = 0;
+      });
+      hero.addEventListener("pointerleave", function(){ idle = 99; });
+      hero.addEventListener("pointerdown", function(){ squashAt = clock; });
+
+      function frame(now){
+        if (!running) return;
+        var dt = Math.min(0.05, (now - last) / 1000); last = now;
+        clock += dt;
+        idle += dt;
+
+        // no pointer for a moment and it goes back to looking around on its own
+        if (idle > 2.2){
+          tgtX = Math.sin(clock * 0.42) * 0.42;
+          tgtY = Math.sin(clock * 0.31 + 1.1) * 0.22;
+        }
+        var k = Math.min(1, dt * 5.5);
+        lookX += (tgtX - lookX) * k;
+        lookY += (tgtY - lookY) * k;
+
+        if (clock > blinkAt + 0.16) blinkAt = clock + 2.6 + Math.random() * 4;
+        var blink = (clock >= blinkAt && clock <= blinkAt + 0.13) ? 1 : 0;
+
+        var sp = clock - squashAt;
+        var squash = sp >= 0 && sp < 0.6 ? (1 - sp / 0.6) * Math.sin(sp * 16) : 0;
+
+        var r = world.getBoundingClientRect();
+        var dpr = Math.min(window.devicePixelRatio || 1, 2);
+        var w = Math.max(2, Math.round(r.width * dpr));
+        var h = Math.max(2, Math.round(r.height * dpr));
+        if (world.width !== w || world.height !== h){ world.width = w; world.height = h; }
+
+        // centre the head on narrow screens, park it right on wide ones
+        var wide = r.width > 820;
+        var centerX = wide ? 0.62 : 0.0;
+        var scale = wide ? 0.56 : 0.72;
+
+        u[0] = world.width; u[1] = world.height; u[2] = centerX; u[3] = scale;
+        u[4] = -lookX * 0.55; u[5] = -lookY * 0.38; u[6] = squash; u[7] = blink;
+        u[8] = lookX; u[9] = lookY; u[10] = 0; u[11] = 0;
+        device.queue.writeBuffer(ubuf, 0, u);
+
+        var enc = device.createCommandEncoder();
+        var pass = enc.beginRenderPass({
+          colorAttachments: [{
+            view: ctx.getCurrentTexture().createView(),
+            clearValue: { r: 0, g: 0, b: 0, a: 0 },
+            loadOp: "clear", storeOp: "store"
+          }]
+        });
+        pass.setPipeline(pipe);
+        pass.setBindGroup(0, bind);
+        pass.draw(3);
+        pass.end();
+        device.queue.submit([enc.finish()]);
+
+        requestAnimationFrame(frame);
+      }
+
+      hero.classList.add("live");
+      running = true;
+      requestAnimationFrame(frame);
+
+      if ("IntersectionObserver" in window){
+        new IntersectionObserver(function(en){
+          en.forEach(function(x){
+            if (x.isIntersecting && !running){ running = true; last = performance.now(); requestAnimationFrame(frame); }
+            else if (!x.isIntersecting){ running = false; }
+          });
+        }, { threshold: 0.01 }).observe(world);
+      }
+    }
+
+    /* ---------------- item viewers on the mod cards ---------------- */
+    function startItems(){
+      var mod = device.createShaderModule({ code: ITEM_WGSL });
+      var pipe = device.createRenderPipeline({
+        layout: "auto",
+        vertex: { module: mod, entryPoint: "vs" },
+        fragment: {
+          module: mod, entryPoint: "fs",
+          targets: [{
+            format: format,
+            blend: {
+              color: { srcFactor: "src-alpha", dstFactor: "one-minus-src-alpha" },
+              alpha: { srcFactor: "one", dstFactor: "one-minus-src-alpha" }
+            }
+          }]
+        },
+        primitive: { topology: "triangle-list" }
+      });
+
+      function rgb(h){
+        return [parseInt(h.slice(1,3),16)/255, parseInt(h.slice(3,5),16)/255, parseInt(h.slice(5,7),16)/255];
+      }
+
+      function mount(canvas, rows){
+        var ctx = canvas.getContext("webgpu");
+        if (!ctx) return;
+        ctx.configure({ device: device, format: format, alphaMode: "premultiplied" });
+
+        var art = new Float32Array(64 * 4);
+        for (var y = 0; y < 8; y++){
+          for (var x = 0; x < 8; x++){
+            var hex = PAL[rows[y] ? rows[y][x] : "."];
+            if (!hex) continue;
+            var c = rgb(hex), o = (y * 8 + x) * 4;
+            art[o]=c[0]; art[o+1]=c[1]; art[o+2]=c[2]; art[o+3]=1;
+          }
+        }
+
+        var abuf = device.createBuffer({ size: art.byteLength, usage: GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST });
+        device.queue.writeBuffer(abuf, 0, art);
+        var ubuf = device.createBuffer({ size: 32, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
+        var bind = device.createBindGroup({
+          layout: pipe.getBindGroupLayout(0),
+          entries: [{ binding: 0, resource: { buffer: ubuf } }, { binding: 1, resource: { buffer: abuf } }]
+        });
+        var u = new Float32Array(8);
+        var spin = 0.5, vis = false, over = false, first = true;
+
+        canvas.addEventListener("pointerenter", function(){ over = true; });
+        canvas.addEventListener("pointerleave", function(){ over = false; });
+
+        var last = performance.now();
+        function frame(now){
+          if (!vis) return;
+          var dt = Math.min(0.05, (now - last) / 1000); last = now;
+          spin += dt * (over ? 1.3 : 0.42);
+
+          var r = canvas.getBoundingClientRect();
+          var dpr = Math.min(window.devicePixelRatio || 1, 2);
+          var w = Math.max(2, Math.round(r.width * dpr));
+          var h = Math.max(2, Math.round(r.height * dpr));
+          if (canvas.width !== w || canvas.height !== h){ canvas.width = w; canvas.height = h; }
+
+          u[0]=canvas.width; u[1]=canvas.height; u[2]=now/1000; u[3]=0;
+          u[4]=spin; u[5]=0; u[6]=0; u[7]=0;
+          device.queue.writeBuffer(ubuf, 0, u);
+
+          var enc = device.createCommandEncoder();
+          var pass = enc.beginRenderPass({
+            colorAttachments: [{
+              view: ctx.getCurrentTexture().createView(),
+              clearValue: { r: 0, g: 0, b: 0, a: 0 },
+              loadOp: "clear", storeOp: "store"
+            }]
+          });
+          pass.setPipeline(pipe);
+          pass.setBindGroup(0, bind);
+          pass.draw(3);
+          pass.end();
+          device.queue.submit([enc.finish()]);
+
+          if (first){ first = false; canvas.classList.add("live"); }
+          requestAnimationFrame(frame);
+        }
+
+        if ("IntersectionObserver" in window){
+          new IntersectionObserver(function(en){
+            en.forEach(function(x){
+              if (x.isIntersecting && !vis){ vis = true; last = performance.now(); requestAnimationFrame(frame); }
+              else if (!x.isIntersecting){ vis = false; }
+            });
+          }, { threshold: 0.05 }).observe(canvas);
+        } else { vis = true; requestAnimationFrame(frame); }
+      }
+
+      function mountAll(){
+        document.querySelectorAll("canvas.item").forEach(function(c){
+          if (c.dataset.mounted) return;
+          c.dataset.mounted = "1";
+          var i = Number(c.dataset.mod);
+          if (MODS[i]) mount(c, MODS[i].art);
+        });
+      }
+      mountAll();
+      window.addEventListener("elduin:modsrendered", mountAll);
+    }
+  })();
+
+  /* ---------- hero terrain strip ---------- */
+  var cv = document.getElementById("terrain");
+  function terrain(){
+    var w = cv.offsetWidth, h = 88, px = 8;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = w * dpr; cv.height = h * dpr;
+    var g = cv.getContext("2d");
+    g.setTransform(dpr,0,0,dpr,0,0);
+    g.clearRect(0,0,w,h);
+    var cs = getComputedStyle(document.documentElement);
+    var grass = cs.getPropertyValue("--accent-soft").trim() || "#3fae63";
+    var dark = cs.getPropertyValue("--bg").trim() || "#14171a";
+    var cols = Math.ceil(w/px);
+    var y = 5;
+    for (var c=0; c<cols; c++){
+      var n = Math.sin(c*0.31) * 1.6 + Math.sin(c*0.11) * 2.2;
+      y = Math.round(5 + n);
+      g.globalAlpha = 0.22;
+      g.fillStyle = grass;
+      g.fillRect(c*px, h - (y+1)*px, px, px);
+      g.globalAlpha = 0.13;
+      g.fillStyle = grass;
+      g.fillRect(c*px, h - y*px, px, y*px);
+      g.globalAlpha = 1;
+      g.fillStyle = dark;
+      g.fillRect(c*px, h - (y+1)*px, 1, (y+1)*px);
+    }
+  }
+  terrain();
+  var rt;
+  window.addEventListener("resize", function(){
+    clearTimeout(rt); rt = setTimeout(terrain, 120);
+  });
+})();
+</script>
+</body>
+</html>
