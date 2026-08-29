@@ -3,7 +3,7 @@
 The website for the mods in [Elduin-Labs](https://github.com/Elduin-Labs) and the
 [Modrinth profile](https://modrinth.com/user/ItsElduin) they get published to.
 
-Live at **https://elduin-labs.github.io**
+Live at **https://elduin.org** (and at https://elduin-labs.github.io, which redirects there)
 
 ## Nothing on the page is typed in by hand
 
@@ -72,9 +72,11 @@ off the disk, and the page will say so instead of pretending to be empty.
 
 GitHub Pages, straight from `main`. Every push republishes within a minute.
 
-For a custom domain: put the bare domain in a `CNAME` file, then point four A
-records at `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and
-`185.199.111.153`, or a `www` CNAME at `elduin-labs.github.io`.
+The custom domain is `elduin.org`, registered at Squarespace and kept on
+Squarespace's nameservers. Its DNS settings hold four apex `A` records pointing
+at `185.199.108.153`, `185.199.109.153`, `185.199.110.153` and `185.199.111.153`,
+and a `www` `CNAME` pointing at `elduin-labs.github.io`. The domain itself lives
+in the `CNAME` file in this repo - deleting that file would drop the domain.
 
 ## License
 
