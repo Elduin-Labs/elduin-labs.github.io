@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-29T18:26:51Z",
+ "generated": "2026-08-30T11:56:21Z",
  "org": "Elduin-Labs",
  "modrinth_user": "ItsElduin",
  "count": 40,
@@ -36,7 +36,7 @@
    },
    "jar": {
     "url": "https://github.com/Elduin-Labs/organs-mod/releases/download/v1.1.0/organs-1.1.0.jar",
-    "downloads": 0,
+    "downloads": 1,
     "name": "organs-1.1.0.jar"
    },
    "modrinth": null
@@ -110,7 +110,7 @@
    },
    "jar": {
     "url": "https://github.com/Elduin-Labs/ringbongos-mod/releases/download/v1.0.0/ringbongos-1.0.0.jar",
-    "downloads": 1,
+    "downloads": 2,
     "name": "ringbongos-1.0.0.jar"
    },
    "modrinth": null
@@ -815,7 +815,7 @@
    "title": "Ride Pig",
    "cat": "mobs",
    "kind": "Mob change",
-   "desc": "Right-click any pig with an empty hand to ride it. Steer with WASD \u2014 no saddle, no carrot on a stick.",
+   "desc": "Right-click any pig to ride it \u2014 no saddle needed. Steer with WASD, and you get a carrot on a stick every time you log in to make the pig run.",
    "art": [
     ".hhhhhh.",
     "hhhhhhhh",
