@@ -1,8 +1,8 @@
 {
- "generated": "2026-08-30T11:56:21Z",
+ "generated": "2026-08-31T13:53:45Z",
  "org": "Elduin-Labs",
  "modrinth_user": "ItsElduin",
- "count": 40,
+ "count": 41,
  "mods": [
   {
    "repo": "organs-mod",
@@ -753,6 +753,30 @@
    "modrinth": null
   },
   {
+   "repo": "mod-com",
+   "title": "Mod Com",
+   "cat": "world",
+   "kind": "Fabric mod",
+   "desc": "Mod.com - every Minecraft mod Elduin has made, on one page",
+   "art": [
+    "iiiiiiii",
+    "gggggggg",
+    "dddddddd",
+    "dddddddd",
+    "uuuuuuuu",
+    "uukuuuuu",
+    "uuuuuuuu",
+    "uuuuukuu"
+   ],
+   "versions": [],
+   "tags": [],
+   "github": "https://github.com/Elduin-Labs/mod-com",
+   "stars": 0,
+   "release": null,
+   "jar": null,
+   "modrinth": null
+  },
+  {
    "repo": "notdying-mod",
    "title": "Not Dying",
    "cat": "tools",
@@ -815,7 +839,7 @@
    "title": "Ride Pig",
    "cat": "mobs",
    "kind": "Mob change",
-   "desc": "Right-click any pig to ride it \u2014 no saddle needed. Steer with WASD, and you get a carrot on a stick every time you log in to make the pig run.",
+   "desc": "Right-click any pig to ride it \u2014 no saddle needed. Steer with WASD, jump with space, and you get an unbreakable carrot on a stick every time you log in to make the pig run.",
    "art": [
     ".hhhhhh.",
     "hhhhhhhh",
