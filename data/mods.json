@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T11:41:21Z",
+ "generated": "2026-09-02T11:20:36Z",
  "org": "Elduin-Labs",
  "modrinth_user": "ItsElduin",
  "count": 43,
@@ -169,6 +169,35 @@
     "Cradle"
    ],
    "github": "https://github.com/Elduin-Labs/babies-mod",
+   "stars": 0,
+   "release": null,
+   "jar": null,
+   "modrinth": null
+  },
+  {
+   "repo": "battleroyale",
+   "title": "Battleroyale",
+   "cat": "world",
+   "kind": "Game mode",
+   "desc": "A Fortnite-style battle royale: a storm circle that closes over 20 minutes, random respawns inside it, loot chests with potions and enchanted swords, a kill leaderboard, and a\u2026",
+   "art": [
+    "..pppp..",
+    ".p....p.",
+    "p..bb..p",
+    "p.b..b.p",
+    "p.b..b.p",
+    "p..bb..p",
+    ".p....p.",
+    "..pppp.."
+   ],
+   "versions": [
+    "1.21.11"
+   ],
+   "tags": [
+    "Minigame",
+    "Storm"
+   ],
+   "github": "https://github.com/Elduin-Labs/battleroyale",
    "stars": 0,
    "release": null,
    "jar": null,
@@ -685,35 +714,6 @@
    "modrinth": null
   },
   {
-   "repo": "battleroyale",
-   "title": "Minecraft Battle Royale",
-   "cat": "world",
-   "kind": "Game mode",
-   "desc": "A Fortnite-style battle royale: a storm circle that closes over 20 minutes, spread-out drops, random respawns inside the circle, loot chests with potions and enchanted swords, a\u2026",
-   "art": [
-    "..pppp..",
-    ".p....p.",
-    "p..bb..p",
-    "p.b..b.p",
-    "p.b..b.p",
-    "p..bb..p",
-    ".p....p.",
-    "..pppp.."
-   ],
-   "versions": [
-    "26.2"
-   ],
-   "tags": [
-    "Minigame",
-    "Storm"
-   ],
-   "github": "https://github.com/Elduin-Labs/battleroyale",
-   "stars": 0,
-   "release": null,
-   "jar": null,
-   "modrinth": null
-  },
-  {
    "repo": "nunchuckets-mod",
    "title": "Minecraft Movie Items",
    "cat": "tools",
@@ -737,35 +737,6 @@
     "Weapon"
    ],
    "github": "https://github.com/Elduin-Labs/nunchuckets-mod",
-   "stars": 0,
-   "release": null,
-   "jar": null,
-   "modrinth": null
-  },
-  {
-   "repo": "pacman-mod",
-   "title": "Minecraft versus Pac-Man",
-   "cat": "world",
-   "kind": "Minigame",
-   "desc": "Run /pacman start and the world folds into a Pac-Man maze: black concrete floor, blue concrete walls, carpet pellets, and four glowing mobs playing Blinky, Pinky, Inky and Clyde.",
-   "art": [
-    "..yyyy..",
-    ".yyyyyy.",
-    "yyyy....",
-    "yyy.....",
-    "yyy.....",
-    "yyyy....",
-    ".yyyyyy.",
-    "..yyyy.."
-   ],
-   "versions": [
-    "1.21.11"
-   ],
-   "tags": [
-    "Arcade",
-    "Command"
-   ],
-   "github": "https://github.com/Elduin-Labs/pacman-mod",
    "stars": 0,
    "release": null,
    "jar": null,
@@ -877,6 +848,64 @@
     "Old style"
    ],
    "github": "https://github.com/Elduin-Labs/oldswing-mod",
+   "stars": 0,
+   "release": null,
+   "jar": null,
+   "modrinth": null
+  },
+  {
+   "repo": "pacman-mod",
+   "title": "Pacman",
+   "cat": "world",
+   "kind": "Minigame",
+   "desc": "Run /pacman start and the world folds into a Pac-Man maze: black concrete floor, blue concrete walls, carpet pellets, and four glowing mobs playing Blinky, Pinky, Inky and Clyde.",
+   "art": [
+    "..yyyy..",
+    ".yyyyyy.",
+    "yyyy....",
+    "yyy.....",
+    "yyy.....",
+    "yyyy....",
+    ".yyyyyy.",
+    "..yyyy.."
+   ],
+   "versions": [
+    "1.21.11"
+   ],
+   "tags": [
+    "Arcade",
+    "Command"
+   ],
+   "github": "https://github.com/Elduin-Labs/pacman-mod",
+   "stars": 0,
+   "release": null,
+   "jar": null,
+   "modrinth": null
+  },
+  {
+   "repo": "potty-mod",
+   "title": "Potty",
+   "cat": "world",
+   "kind": "Need",
+   "desc": "Everything you eat and drink has to go somewhere. Build a toilet, keep toilet paper on you, flush before it clogs, and wash your hands \u2014 or have an accident in front of everyone.",
+   "art": [
+    "..wwww..",
+    "..w..w..",
+    "..wwww..",
+    ".wwwwww.",
+    "wwwwwwww",
+    "wiiiiiiw",
+    ".wwwwww.",
+    "..wwww.."
+   ],
+   "versions": [
+    "1.21.11"
+   ],
+   "tags": [
+    "Survival",
+    "Toilet"
+   ],
+   "github": "https://github.com/Elduin-Labs/potty-mod",
    "stars": 0,
    "release": null,
    "jar": null,
@@ -1086,35 +1115,6 @@
    "modrinth": null
   },
   {
-   "repo": "potty-mod",
-   "title": "The Potty Update",
-   "cat": "world",
-   "kind": "Need",
-   "desc": "Everything you eat and drink has to go somewhere. Build a toilet, keep toilet paper on you, flush before it clogs, and wash your hands \u2014 or have an accident in front of everyone.",
-   "art": [
-    "..wwww..",
-    "..w..w..",
-    "..wwww..",
-    ".wwwwww.",
-    "wwwwwwww",
-    "wiiiiiiw",
-    ".wwwwww.",
-    "..wwww.."
-   ],
-   "versions": [
-    "1.21.11"
-   ],
-   "tags": [
-    "Survival",
-    "Toilet"
-   ],
-   "github": "https://github.com/Elduin-Labs/potty-mod",
-   "stars": 0,
-   "release": null,
-   "jar": null,
-   "modrinth": null
-  },
-  {
    "repo": "realworld-mod",
    "title": "The Real World",
    "cat": "world",
@@ -1233,7 +1233,7 @@
   },
   {
    "repo": "voiceclaude-mod",
-   "title": "Voice Claude",
+   "title": "Voiceclaude",
    "cat": "mobs",
    "kind": "AI mob",
    "desc": "Talk out loud to an NPC. Simple Voice Chat carries your voice to the server, Whisper turns it into text, and an LLM answers in chat.",
